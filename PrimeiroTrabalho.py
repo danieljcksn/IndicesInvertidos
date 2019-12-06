@@ -1,4 +1,4 @@
-def geraTabelaIndices(endereços, desc):
+def geraTabelaIndices(enderecos, desc):
     #Criando um novo arquivo de palavras desconsideradas sem quebras de linha.
     desc = open(desc, 'r')
     desc = desc.readlines()
@@ -9,23 +9,23 @@ def geraTabelaIndices(endereços, desc):
         desconsideradas.write(' ')
     desconsideradas.close()
 
-    #Armazenando as palavras desconsideradas em uma lista, facilitando, portanto, a manipulação.
+    #Armazenando as palavras desconsideradas em uma lista, facilitando, portanto, a manipulacao.
     desconsideradas = open('desconsideradas.txt', 'r')
     arraydesc = desconsideradas.readline()
     arraydesc = arraydesc.split()
     print('Palavras a serem desconsideradas:', arraydesc)
 
-    #Criando um novo arquivo de endereços sem quebras de linha.
-    endereços = open(endereços, 'r')
-    endereços = endereços.readlines()
+    #Criando um novo arquivo de enderecos sem quebras de linha.
+    enderecos = open(enderecos, 'r')
+    enderecos = enderecos.readlines()
     caminhos = open('caminhos.txt', 'w')
-    for i in endereços:
+    for i in enderecos:
         i = i.strip('\n')
         caminhos.write(i)
         caminhos.write(' ')
     caminhos.close()
 
-    #Armazenando os endereços em uma lista, facilitando, desse modo, a manipulação.
+    #Armazenando os enderecos em uma lista, facilitando, desse modo, a manipulacao.
     caminhos = open('caminhos.txt', 'r')
     arraycaminhos = caminhos.readline()
     arraycaminhos = arraycaminhos.split()
@@ -38,12 +38,12 @@ def geraTabelaIndices(endereços, desc):
         arq = arq.readlines()
         linhas = open(i, 'w')
         for k in arq:
-            #Separa todas as palavras pelo espaço
+            #Separa todas as palavras pelo espaco
             k = k.split()
             for j in k:
                 #Elimina os caracteres especiais de cada palavra
                 j = j.strip('\n,.?! ')
-                #Escreve novamente a palavra após formatação no arquivo original
+                #Escreve novamente a palavra apos formatacao no arquivo original
                 linhas.write(j)
                 linhas.write(' ')
         linhas.close()
@@ -54,7 +54,7 @@ def geraTabelaIndices(endereços, desc):
         listaArquivo = arquivoIn.read()
         listaArquivo = listaArquivo.split()
         arquivoIn.close()
-        print('Arquivo', i, 'antes das remoções:', listaArquivo)
+        print('Arquivo', i, 'antes das remocoes:', listaArquivo)
         w = len(listaArquivo)
         for k in range(w):
             for j in range(len(arraydesc)):
@@ -64,10 +64,10 @@ def geraTabelaIndices(endereços, desc):
 
         arquivoOut = open(i, 'w')
         for k in range(len(listaArquivo)):
-            #Caso exista alguma palavra na posição k da lista do arquivo, efetua a operação de escrita.
+            #Caso exista alguma palavra na posicao k da lista do arquivo, efetua a operacao de escrita.
             if listaArquivo[k] != '':
                 arquivoOut.write(listaArquivo[k])
                 arquivoOut.write(' ')
-        print('Arquivo', i, 'após as remoções:', listaArquivo)
+        print('Arquivo', i, 'apos as remocoes:', listaArquivo)
 
 geraTabelaIndices('conjunto.txt', 'desconsideradas.txt')
