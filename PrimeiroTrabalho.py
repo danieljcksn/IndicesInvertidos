@@ -18,7 +18,7 @@ def geraTabelaIndices(enderecos, desc):
     #Criando um novo arquivo de enderecos sem quebras de linha.
     enderecos = open(enderecos, 'r')
     enderecos = enderecos.readlines()
-    caminhos = open('caminhos.txt', 'w')
+    caminhos = open('conjunto.txt', 'w')
     for i in enderecos:
         i = i.strip('\n')
         caminhos.write(i)
@@ -26,7 +26,7 @@ def geraTabelaIndices(enderecos, desc):
     caminhos.close()
 
     #Armazenando os enderecos em uma lista, facilitando, desse modo, a manipulacao.
-    caminhos = open('caminhos.txt', 'r')
+    caminhos = open('conjunto.txt', 'r')
     arraycaminhos = caminhos.readline()
     arraycaminhos = arraycaminhos.split()
     print('Caminhos dos arquivos:', arraycaminhos)
@@ -54,7 +54,6 @@ def geraTabelaIndices(enderecos, desc):
         listaArquivo = arquivoIn.read()
         listaArquivo = listaArquivo.split()
         arquivoIn.close()
-        print('Arquivo', i, 'antes das remocoes:', listaArquivo)
         w = len(listaArquivo)
         for k in range(w):
             for j in range(len(arraydesc)):
@@ -68,6 +67,51 @@ def geraTabelaIndices(enderecos, desc):
             if listaArquivo[k] != '':
                 arquivoOut.write(listaArquivo[k])
                 arquivoOut.write(' ')
-        print('Arquivo', i, 'apos as remocoes:', listaArquivo)
+        arquivoOut.close()
 
+
+    indices = open('indice.txt', 'w+')
+    palavras = []
+    frequencias = []
+
+    #Gerando uma lista com as palavras que os arquivos possuem.
+    for i in arraycaminhos:
+        arquivoIn = open(i, 'r')
+        listaArquivo = arquivoIn.read()
+        listaArquivo = listaArquivo.split()
+        arquivoIn.close()
+        for k in range(len(listaArquivo)):
+            if listaArquivo[k] in palavras:
+                continue
+            else: 
+                palavras.append(listaArquivo[k])
+                frequencias.append(0)
+
+    contador = 1
+    indices = open('indice.txt', 'w+')
+    for i in arraycaminhos:
+        arquivoIn = open(i, 'r')
+        listaArquivo = arquivoIn.read()
+        listaArquivo = listaArquivo.split()
+        arquivoIn.close()
+
+
+        for w in range(len(frequencias)):
+            frequencias[w] = 0
+
+        for j in range(len(listaArquivo)):
+            index = palavras.index(listaArquivo[j])
+            frequencias[index] += 1
+
+        for w in range(len(palavras)):
+            if frequencias[w] != 0:
+                indices.write(palavras[w] + ': ' + str(contador) + ',' + str(frequencias[w]) + '\n')
+
+        contador += 1
+
+    indices.close()
+    ind = open('indice.txt', 'r')
+    lerIndices = ind.readlines()
+    print(lerIndices)
+   
 geraTabelaIndices('conjunto.txt', 'desconsideradas.txt')
