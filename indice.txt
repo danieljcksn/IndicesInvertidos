@@ -1,0 +1,30 @@
+---------- Arquivo: a.txt ----------
+
+era: 1,1
+casa: 1,1
+muito: 1,1
+engracada: 1,1
+tinha: 1,2
+teto: 1,1
+nada: 1,1
+
+---------- Arquivo: b.txt ----------
+
+casa: 2,4
+quem: 2,2
+quer: 2,2
+mora: 2,1
+tambem: 2,1
+
+---------- Arquivo: c.txt ----------
+
+casa: 3,1
+quer: 3,2
+mora: 3,1
+casar: 3,2
+comigo: 3,2
+amor: 3,1
+faca: 3,1
+favor: 3,1
+minha: 3,1
+

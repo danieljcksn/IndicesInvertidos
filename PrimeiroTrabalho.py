@@ -103,10 +103,12 @@ def geraTabelaIndices(enderecos, desc):
             index = palavras.index(listaArquivo[j])
             frequencias[index] += 1
 
+        indices.write('---------- Arquivo: '+str(i)+' ----------' + '\n\n')
         for w in range(len(palavras)):
             if frequencias[w] != 0:
                 indices.write(palavras[w] + ': ' + str(contador) + ',' + str(frequencias[w]) + '\n')
 
+        indices.write('\n')
         contador += 1
 
     indices.close()
