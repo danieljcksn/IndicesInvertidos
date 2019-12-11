@@ -24,7 +24,7 @@ def geraTabelaIndices(enderecos, desc):
     desconsideradas = open('desconsideradas.txt', 'r')
     arraydesc = desconsideradas.readline()
     arraydesc = arraydesc.split()
-    print('Palavras a serem desconsideradas:', arraydesc)
+    #print('Palavras a serem desconsideradas:', arraydesc)
 
     #Criando um novo arquivo de enderecos sem quebras de linha.
     enderecos = open(enderecos, 'r')
@@ -40,7 +40,7 @@ def geraTabelaIndices(enderecos, desc):
     caminhos = open('conjunto.txt', 'r')
     arraycaminhos = caminhos.readline()
     arraycaminhos = arraycaminhos.split()
-    print('Caminhos dos arquivos:', arraycaminhos)
+    #print('Caminhos dos arquivos:', arraycaminhos)
 
     #Lendo todos os arquivos (a.txt, b.txt, c.txt) e eliminando os caracteres especiais (,! ?,)
     for i in arraycaminhos:
@@ -135,8 +135,7 @@ def geraTabelaIndices(enderecos, desc):
                     indices.write(palavras[w] + ': ' + ' 2,' + str(b) + ' 3,' + str(c) + '\n') 
 
     indices.close()
-    ind = open('indice.txt', 'r')
-    lerIndices = ind.readlines()
-    print(lerIndices)
+    print('Executado com sucesso! Verifique o resultado no arquivo "indice.txt"')
+    print('Trabalho feito por Breno Vitorio, Leonardo Damasceno e Daniel Jackson')
    
 geraTabelaIndices('conjunto.txt', 'desconsideradas.txt')
