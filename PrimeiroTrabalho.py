@@ -103,11 +103,36 @@ def geraTabelaIndices(enderecos, desc):
             b = contaPalavra('b.txt', palavras[w])
             c = contaPalavra('c.txt', palavras[w])
             if i == 'a.txt' and a != 0:
-                indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
+                if b != 0:
+                    if c == 0:
+                        indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + '\n')
+                    else:
+                        indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
+                elif c != 0:
+                    indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 3,' + str(c) + '\n')
+                else:
+                    indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + '\n')
             elif i == 'b.txt' and a == 0 and b != 0:
-                indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
-            elif i == 'c.txt' and a == 0 and b == 0:
-                indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
+                if a != 0:
+                    if c == 0:
+                        indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + '\n') 
+                    else:
+                        indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n') 
+                elif c == 0:
+                    indices.write(palavras[w] + ': ' + ' 2,' + str(b) + '\n')
+                else:
+                    indices.write(palavras[w] + ': ' + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
+
+            elif i == 'c.txt' and a == 0 and b == 0 and c != 0:
+                if a != 0:
+                    if b == 0:
+                        indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 3,' + str(c) + '\n') 
+                    else:
+                        indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n') 
+                elif b == 0:
+                    indices.write(palavras[w] + ': ' + ' 3,' + str(c) + '\n') 
+                else:
+                    indices.write(palavras[w] + ': ' + ' 2,' + str(b) + ' 3,' + str(c) + '\n') 
 
     indices.close()
     ind = open('indice.txt', 'r')
