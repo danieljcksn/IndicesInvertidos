@@ -1,13 +1,7 @@
-def contaPalavra(n, palavra):
+def contaPalavra(arquivoIn, palavra):
+    
     cont = 0
     global banco
-    if n == 1:
-        arquivoIn = 'a.txt'
-    elif n == 2:
-        arquivoIn = 'b.txt'
-    else:
-        arquivoIn = 'c.txt'
-
     arquivo = open(arquivoIn,'r')
     banco = arquivo.read().split()
     for linha in banco:
@@ -106,9 +100,9 @@ def geraTabelaIndices(enderecos, desc):
     indices = open('indice.txt', 'w+')
     for i in arraycaminhos:
         for w in range(len(palavras)):
-            a = contaPalavra(1, palavras[w])
-            b = contaPalavra(2, palavras[w])
-            c = contaPalavra(3, palavras[w])
+            a = contaPalavra('a.txt', palavras[w])
+            b = contaPalavra('b.txt', palavras[w])
+            c = contaPalavra('c.txt', palavras[w])
             if i == 'a.txt' and a != 0:
                 indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
             elif i == 'b.txt' and a == 0 and b != 0:
