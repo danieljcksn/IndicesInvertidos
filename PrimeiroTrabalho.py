@@ -1,31 +1,19 @@
-
-def contaPalavra(n,palavra):
+def contaPalavra(n, palavra):
     cont = 0
     global banco
     if n == 1:
-        arquivo = open('a.txt','r')
-        banco = arquivo.read().split()
-        for linha in banco:
-            if linha == palavra:
-                cont = cont + 1
-        return cont
+        arquivoIn = 'a.txt'
     elif n == 2:
-        arquivo = open('b.txt','r')
-        banco = arquivo.read().split()
-        for linha in banco:
-            if linha == palavra:
-                cont = cont + 1
-        return cont
-    elif n == 3:
-        arquivo = open('c.txt','r')
-        banco = arquivo.read().split()
-        for linha in banco:
-            if linha == palavra:
-                cont = cont + 1
-        return cont
+        arquivoIn = 'b.txt'
     else:
-        return cont
+        arquivoIn = 'c.txt'
 
+    arquivo = open(arquivoIn,'r')
+    banco = arquivo.read().split()
+    for linha in banco:
+        if linha == palavra:
+            cont = cont + 1
+    return cont
 
 
 def geraTabelaIndices(enderecos, desc):
@@ -102,7 +90,6 @@ def geraTabelaIndices(enderecos, desc):
 
     indices = open('indice.txt', 'w+')
     palavras = []
-    frequencias = []
 
     #Gerando uma lista com as palavras que os arquivos possuem.
     for i in arraycaminhos:
@@ -115,42 +102,19 @@ def geraTabelaIndices(enderecos, desc):
                 continue              
             else: 
                 palavras.append(listaArquivo[k])
-                frequencias.append(0)
 
     indices = open('indice.txt', 'w+')
     for i in arraycaminhos:
-        arquivoIn = open(i, 'r')
-        listaArquivo = arquivoIn.read()
-        listaArquivo = listaArquivo.split()
-        arquivoIn.close()
-
-
-        for w in range(len(frequencias)):
-            frequencias[w] = 0
-
-        for j in range(len(listaArquivo)):
-            index = palavras.index(listaArquivo[j])
-            frequencias[index] += 1
-
         for w in range(len(palavras)):
-            if i == 'a.txt' and contaPalavra(1,palavras[w]) != 0:
-                indices.write(palavras[w] + ': ' + '1' + ',' + str(contaPalavra(1,palavras[w]))
-                    + ' 2,' + 
-                    str(contaPalavra(2,palavras[w]))
-                    + ' 3,' + 
-                    str(contaPalavra(3,palavras[w])) + '\n')
-            elif i == 'b.txt' and contaPalavra(1,palavras[w]) == 0 and contaPalavra(2,palavras[w]) != 0:
-                indices.write(palavras[w] + ': ' + '1' + ',' + str(contaPalavra(1,palavras[w]))
-                    + ' 2,' + 
-                    str(contaPalavra(2,palavras[w]))
-                    + ' 3,' + 
-                    str(contaPalavra(3,palavras[w])) + '\n')
-            elif i == 'c.txt' and contaPalavra(1,palavras[w]) == 0 and contaPalavra(2,palavras[w]) == 0:
-                indices.write(palavras[w] + ': ' + '1' + ',' + str(contaPalavra(1,palavras[w]))
-                    + ' 2,' + 
-                    str(contaPalavra(2,palavras[w]))
-                    + ' 3,' + 
-                    str(contaPalavra(3,palavras[w])) + '\n')
+            a = contaPalavra(1, palavras[w])
+            b = contaPalavra(2, palavras[w])
+            c = contaPalavra(3, palavras[w])
+            if i == 'a.txt' and a != 0:
+                indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
+            elif i == 'b.txt' and a == 0 and b != 0:
+                indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
+            elif i == 'c.txt' and a == 0 and b == 0:
+                indices.write(palavras[w] + ': ' + '1' + ',' + str(a) + ' 2,' + str(b) + ' 3,' + str(c) + '\n')
 
     indices.close()
     ind = open('indice.txt', 'r')
