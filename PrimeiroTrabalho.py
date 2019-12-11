@@ -1,5 +1,4 @@
 def contaPalavra(arquivoIn, palavra):
-    
     cont = 0
     global banco
     arquivo = open(arquivoIn,'r')
